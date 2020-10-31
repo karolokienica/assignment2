@@ -13,7 +13,7 @@ class App extends Component {
   return (
     <div className="App">
       <input type="text" onChange={this.changeTextHandler}/>
-      <label>{this.state.text}</label>
+      <label>{this.state.text.length}</label>
     </div>
   )
   };
