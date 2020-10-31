@@ -12,19 +12,47 @@ class App extends Component {
       );
   }
 
-  text = this.state.text;
+  displayLetters = (textString) => {
+    const textArray = textString.split('');
+    const array = [];
+    for(let i = 0; i < textArray.length; i++){
+      array[i] = { index: i, letter: textArray[i]}
+    }
+    return array;
+  }
 
-  displayLetters = () => {
-      
+  deleteLetter = (array, index) => {
+     array.splice(index, 1);
+     const letters = [];
+    for(let i = 0; i < array.length; i++){
+      array[i] = { index: i, letter: array[i].letter}
+      letters[i] = array[i].letter
+    }
+     
+     const text = letters.join('')
+     
+     this.setState({text: text})
+     
   }
 
   render(){
+    const array = this.displayLetters(this.state.text)
+    let letters =(
+      this.displayLetters(this.state.text).map(item => {
+        return(
+      
+        <CharComponent letter={item.letter} click={() => this.deleteLetter(array, item.index)}/>
+      
+        )
+    })
+    )
+    
   return (
     <div className="App">
-      <input type="text" onChange={this.changeTextHandler}/>
+      <input type="text" onChange={this.changeTextHandler} value={this.state.text}/>
       <label> {this.state.text.length}</label>
       <ValidationComponent text={this.state.text}/>
-
+      {letters}
     </div>
   )
   };
