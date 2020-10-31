@@ -10,10 +10,12 @@ const charcomponent = (props) => {
   }
 
 return(
-  <div style={style} onClick={props.click}>
-    {props.letter}
+  <div style={style} onClick={props./*click*/clicked}>
+    {props.character}
   </div>
 )
 }
+
+// {props.letter}
 
 export default charcomponent;
